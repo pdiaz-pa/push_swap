@@ -1,0 +1,15 @@
+El programa recibe por argumentos una serie de números enteros.
+
+Gestión de errores:
+
+-Tienen que haber dos números o más. V
+-No se pueden repetir números.
+-Los números deben de ser enteros.
+-Los argumentos han de ser números. V
+-Cuando te pasan los argumentos por una variable (ARG="1 2 4 6 5 7") hay que splitear el argumento en varios y atoiarlos.
+
+
+Los argumentos tienen que ir a una pila A. También tenemos que crear una pila b vacía. V
+
+Creamos un nodo por cada argumento recibido (previamente lo hemos metido en un array para hacer la gestión de errores). V
+
