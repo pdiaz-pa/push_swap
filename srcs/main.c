@@ -28,6 +28,7 @@ void ft_make_list(t_stack *head, int *nums, int array_size)
         push(head, nums[i]);
         i++;
     }
+    free(nums);
 }
 void ft_stack_printer(t_stack *stack)
 {
@@ -77,8 +78,10 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     }
 
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
+    
     push(a, 444);
     push(a, 6969);
+    
     return(0);
 }
 
@@ -127,7 +130,7 @@ int ft_space_checker(char *argv)
 int main(int argc, char **argv)
 {
     t_stack *t_stack_a;
-    t_stack *t_stack_b;
+    //t_stack *t_stack_b;
     char **splitted;
 
     splitted = NULL;
@@ -151,7 +154,7 @@ int main(int argc, char **argv)
     }
     
     t_stack_a = ft_init_t_stack(); //init t_stack reserva memoria para un t_stack e inicializa su dato a 0 y sus punteros a NULL
-    t_stack_b = ft_init_t_stack();
+    //t_stack_b = ft_init_t_stack();
 
     if (splitted == NULL)
         splitted = argv;
@@ -161,6 +164,9 @@ int main(int argc, char **argv)
         ft_error("Los argumentos han de ser númericos.");
         exit(0);
     }
-    ft_stack_printer(t_stack_a);
+    //ft_stack_printer(t_stack_a);
+    
+    free(t_stack_a);
+
     printf("%s", "cool\n");
 }
