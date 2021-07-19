@@ -10,7 +10,6 @@ DIR_O = ./
 SRC = 	ft_utils.c 	\
 		ops.c		\
 		main.c 		\
-		ft_utils_split.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 

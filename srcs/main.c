@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/14 14:36:00 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:30:07 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,32 @@ void ft_error(char *str)
 
 void ft_make_list(t_stack *head, int *nums, int array_size)
 {
-    int i;
-    i = 0;
-    printf("%d uahu \n", array_size);
-    while(i < array_size)
-    {
-        push(head, nums[i]);
-        i++;
-    }
-    free(nums);
+	int		idx;
+	t_stack	*new_node;
+
+	idx = 0;
+	while (idx < array_size - 1)
+	{
+		new_node = (t_stack *)malloc(sizeof(t_stack));
+    
+		if (!new_node)
+			ft_error("fuckyou");
+		if (head->next == NULL)
+		{
+			new_node->data = nums[idx++];
+			new_node->next = NULL;
+			new_node->prev = head;
+			head->next = new_node;
+		}
+		else
+		{
+			new_node->data = nums[idx++];
+			new_node->next = head->next;
+			new_node->next->prev = new_node;
+			new_node->prev = head;
+			head->next = new_node;
+		}
+	}
 }
 void ft_stack_printer(t_stack *stack)
 {
@@ -69,7 +86,7 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     }
     
 
-    nums = reverse_array(nums, (argc));
+    nums = reverse_array(nums, argc);
     nums[i++] = '\0';
     if (ft_is_sort(nums) == -1)
     {
@@ -78,9 +95,8 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     }
 
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
-    
     push(a, 444);
-    push(a, 6969);
+    //push(a, 6969);
     
     return(0);
 }
@@ -127,10 +143,58 @@ int ft_space_checker(char *argv)
     return(0);
 }
 
+void	ft_free_stacks(t_stack *a, t_stack *b)
+{
+	t_stack *nstack;
+
+	while (a)
+	{
+		nstack = a->next;
+		free(a);
+		a->next = NULL;
+		a->prev = NULL;
+		a = nstack;
+	}
+	while (b)
+	{
+		nstack = b->next;
+		free(b);
+		b->next = NULL;
+		b->prev = NULL;
+		b = nstack;
+	}
+}
+char **ft_argv_to_splitted(char **argv, char **splitted, int argc)
+{
+    int i;
+    int j;
+    int k;
+
+    i = 1;
+    j = 0;
+    k = 0;
+    splitted = (char **) malloc(sizeof(char *) * (argc + 1));
+
+    while(i < argc)
+    {
+        while(argv[i][j] != '\0')
+        {
+            argv[i][j] = splitted[k][j];
+            j++;
+
+        }
+        splitted[k][j] = '\0';
+        j = 0;
+        i++;
+        k++;
+    }
+    splitted[k][j] = '\0';
+    return(splitted);
+}
 int main(int argc, char **argv)
 {
-    t_stack *t_stack_a;
-    //t_stack *t_stack_b;
+    t_stack *stack_a;
+    t_stack *stack_b;
     char **splitted;
 
     splitted = NULL;
@@ -153,20 +217,20 @@ int main(int argc, char **argv)
        // }
     }
     
-    t_stack_a = ft_init_t_stack(); //init t_stack reserva memoria para un t_stack e inicializa su dato a 0 y sus punteros a NULL
-    //t_stack_b = ft_init_t_stack();
+    stack_a = ft_init_t_stack(); //init t_stack reserva memoria para un stack e inicializa su dato a 0 y sus punteros a NULL
+    stack_b = ft_init_t_stack();
 
     if (splitted == NULL)
         splitted = argv;
 
-    if(ft_args_array(argc, splitted, t_stack_a) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
+    if(ft_args_array(argc, splitted, stack_a) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
     {
         ft_error("Los argumentos han de ser númericos.");
         exit(0);
     }
-    //ft_stack_printer(t_stack_a);
+    ft_stack_printer(stack_a);
     
-    free(t_stack_a);
-
+    //ft_free_stacks(t_stack_a, t_stack_b);
+    //ft_size_selector(stack_a, stack_b, argc);
     printf("%s", "cool\n");
 }

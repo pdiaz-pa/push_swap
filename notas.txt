@@ -8,8 +8,17 @@ Gestión de errores:
 -Los argumentos han de ser números. V
 -Cuando te pasan los argumentos por una variable (ARG="1 2 4 6 5 7") hay que splitear el argumento en varios y atoiarlos.
 
+Si solo hay un argumento
+    mientras sea distinto del fin
+        char *array = splitter(array);
+
+
+
+ARG = "11 223 33 434 54 6643 7 83"
+
+**result
 
 Los argumentos tienen que ir a una pila A. También tenemos que crear una pila b vacía. V
 
-Creamos un nodo por cada argumento recibido (previamente lo hemos metido en un array para hacer la gestión de errores). V
+Creamos un nodo por cada argumento recibido (ARRAY SIZE - 1 PARA EVITAR METER EL '\0') (previamente lo hemos metido en un array para hacer la gestión de errores). V
 
