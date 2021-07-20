@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/14 14:24:21 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/07/20 14:48:02 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,16 @@ int ft_is_sort(int *array)
 	int i;
 	int j;
 	int k;
+	int size;
 	i = 1;
 	j = 1;
 	k = 1;
-	while (array[i] != '\0')
+	size = 0;
+	
+	while (array[i] != 1100) // APAÑO DE MOMENTO PARA QUE ENCUENTRE EL FINAL DEL ARRAY DE INTS
 		i++;
+	//printf("%dperrrro\n", i);
+	
 	i--;
 	while (k < i)
 	{

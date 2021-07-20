@@ -27,5 +27,9 @@ int invert_array(int *nums);
 void	ft_push_first(t_stack *head, int data);
 int ft_is_sort(int *array);
 int *reverse_array(int *nums, int size);
-
+char		**ft_split(char const *s, char c);
+void		ft_free(char **s, int idx);
+char		*ft_fd_strdup(const char *s, size_t lenword);
+size_t		ft_lenword(char const *s, char c);
+size_t		ft_cntword(char const *s, char c);
 #endif

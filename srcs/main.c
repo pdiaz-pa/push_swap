@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/19 14:30:07 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/07/20 15:08:09 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     
 
     nums = reverse_array(nums, argc);
-    nums[i++] = '\0';
+    nums[i++] = 1100; // APAÑO DE MOMENTO PARA QUE ENCUENTRE EL FINAL DEL ARRAY DE INTS EN FT_IS SORT
     if (ft_is_sort(nums) == -1)
     {
         ft_error("Ya están ordenados.\n");
@@ -164,6 +164,8 @@ void	ft_free_stacks(t_stack *a, t_stack *b)
 		b = nstack;
 	}
 }
+
+/*
 char **ft_argv_to_splitted(char **argv, char **splitted, int argc)
 {
     int i;
@@ -190,7 +192,25 @@ char **ft_argv_to_splitted(char **argv, char **splitted, int argc)
     }
     splitted[k][j] = '\0';
     return(splitted);
+}*/
+
+char **ft_splitter(char **argv, int argc)
+{
+    char **splitted;
+    int i;
+
+    i = 0;
+    splitted = NULL;
+
+    while(i < argc)
+    {
+        splitted = ft_split(argv[i], ' '); // por algún motivo solo está guardando el segundo número
+        i++;
+    }
+
+    return(splitted);
 }
+
 int main(int argc, char **argv)
 {
     t_stack *stack_a;
@@ -211,10 +231,11 @@ int main(int argc, char **argv)
             printf("OK\n");
             return (-1);
         }
-        //if (ft_space_checker(argv[1]) > 0)
-        //{
-        //    splitted = ft_splitter((const char *)argv[1]); //no furula aún
-       // }
+        if (ft_space_checker(argv[1]) > 0)
+        {
+            printf("entiendo que hay comillas y espacios y thal\n");
+            splitted = ft_splitter(argv, argc);
+        }
     }
     
     stack_a = ft_init_t_stack(); //init t_stack reserva memoria para un stack e inicializa su dato a 0 y sus punteros a NULL
@@ -228,7 +249,7 @@ int main(int argc, char **argv)
         ft_error("Los argumentos han de ser númericos.");
         exit(0);
     }
-    ft_stack_printer(stack_a);
+    //ft_stack_printer(stack_a);
     
     //ft_free_stacks(t_stack_a, t_stack_b);
     //ft_size_selector(stack_a, stack_b, argc);
