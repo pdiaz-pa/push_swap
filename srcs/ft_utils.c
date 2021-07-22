@@ -6,11 +6,23 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/20 14:48:02 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/07/22 12:08:12 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = 0;
+		i++;
+	}
+}
 
 int	ft_atoi(const char *str)
 {
@@ -68,22 +80,21 @@ int *reverse_array(int *nums, int size)
   return(nums);
 }
 
-int ft_is_sort(int *array)
+int ft_is_sort(int *array, int argc)
 {
 	int i;
 	int j;
 	int k;
-	int size;
-	i = 1;
+	
+	i = 0;
 	j = 1;
-	k = 1;
-	size = 0;
+	k = 0;
 	
-	while (array[i] != 1100) // APAÑO DE MOMENTO PARA QUE ENCUENTRE EL FINAL DEL ARRAY DE INTS
+	
+	while (i < argc) 
 		i++;
-	//printf("%dperrrro\n", i);
-	
 	i--;
+	
 	while (k < i)
 	{
 		if(array[k] > array[k + 1])

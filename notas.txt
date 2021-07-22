@@ -26,6 +26,7 @@ Creamos un nodo por cada argumento recibido (ARRAY SIZE - 1 PARA EVITAR METER EL
 
 FALLOS:
 
--Si uno de los elementos es un 0, la función ft_is_sort se confunde, lo toma como '\0' y no funciona bien. //// APAÑADO DE MOMENTO PARA QUE ENCUENTRE EL FINAL DEL ARRAY DE INTS EN FT_IS SORT. REVISAR
+-Si uno de los elementos es un 0, la función ft_is_sort se confunde, lo toma como '\0' y no funciona bien. // SOLUSIONAO
 -Aún permite números repetidos.
 -No coge aún un único argumento entrecomillado.
+

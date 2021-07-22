@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/20 15:08:09 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/07/22 13:39:22 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void ft_stack_printer(t_stack *stack)
     }
     printf("NULL\n");
 }
+
+
 int ft_args_array(int argc, char **argv, t_stack *a)
 {
     int i;
@@ -84,18 +86,17 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         i++;
         
     }
-    
-
     nums = reverse_array(nums, argc);
-    nums[i++] = 1100; // APAÑO DE MOMENTO PARA QUE ENCUENTRE EL FINAL DEL ARRAY DE INTS EN FT_IS SORT
-    if (ft_is_sort(nums) == -1)
+    nums[i++] = '\0';
+    if (ft_is_sort(nums, argc) == -1)
     {
         ft_error("Ya están ordenados.\n");
         return(-2);
     }
 
+
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
-    push(a, 444);
+    //push(a, 444);
     //push(a, 6969);
     
     return(0);
@@ -249,7 +250,9 @@ int main(int argc, char **argv)
         ft_error("Los argumentos han de ser númericos.");
         exit(0);
     }
-    //ft_stack_printer(stack_a);
+
+    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+        ft_stack_printer(stack_a);
     
     //ft_free_stacks(t_stack_a, t_stack_b);
     //ft_size_selector(stack_a, stack_b, argc);
