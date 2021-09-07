@@ -6,11 +6,75 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/22 13:39:22 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/07 14:19:42 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int ft_is_dup(long long *nums)
+{
+    int i;
+
+    long long  max;
+    long long *checker;
+
+    checker = NULL;
+    max = 0;
+    i = 1;
+ 
+    while(nums[i] != '\0')
+    {
+        if (nums[i] > max)
+            max = nums[i];
+        i++;
+    }
+    checker = malloc(sizeof(long long) * max + 1);
+    i = 0;
+    while (checker[i] != '\0')
+    {
+        checker[i] = 0;
+        i++;
+    }
+    
+    i = 1;
+    while(nums[i] != '\0')
+    {
+        if (checker[nums[i]] == 0)
+            checker[nums[i]] = nums[i];
+        else
+            return(-1);
+        i++;
+    }
+    free(checker);
+    return(0);
+}
+
+long long *ft_positivizer(long long *nums)
+{
+    int i;
+    int min;
+    
+    i = 1;
+    min = 0;
+
+    while(nums[i] != '\0')
+    {
+        if (nums[i] < min)
+        {
+            min = nums[i];
+            printf("%d ey\n", min);
+        }
+        i++;
+    }
+    i = 1;
+    while(nums[i] != '\0')
+    {
+        nums[i] = nums[i] + (min * -1);
+        i++;
+    }
+    return(nums);
+}
 
 void ft_error(char *str)
 {
@@ -18,7 +82,7 @@ void ft_error(char *str)
     printf("%s\n", str);
 }
 
-void ft_make_list(t_stack *head, int *nums, int array_size)
+void ft_make_list(t_stack *head, long long *nums, int array_size)
 {
 	int		idx;
 	t_stack	*new_node;
@@ -62,12 +126,12 @@ void ft_stack_printer(t_stack *stack)
 int ft_args_array(int argc, char **argv, t_stack *a)
 {
     int i;
-    int *nums;
+    long long *nums;
     int j;
     i = 1;
     j = 0;
     
-    nums = (int *)malloc(sizeof(int) * (argc + 1));
+    nums = (long long *)malloc(sizeof(long long) * (argc + 1));
     
     while (i < argc)
     {  
@@ -81,20 +145,26 @@ int ft_args_array(int argc, char **argv, t_stack *a)
             j++;
         }
         nums[i] = ft_atoi(argv[i]); 
-        printf("%d data \n", nums[i]);
+        printf("%lld data \n", nums[i]);
         j = 0;
         i++;
         
     }
     nums = reverse_array(nums, argc);
     nums[i++] = '\0';
+    nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_sort(nums, argc) == -1)
     {
         ft_error("Ya están ordenados.\n");
         return(-2);
     }
-
-
+    /* ESTA MIERDA NO FUNCIONA
+    if (ft_is_dup(nums) == -1)
+    {
+        ft_error("No puede haber números duplicados.\n");
+        return(-2);
+    }
+    */
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
     //push(a, 444);
     //push(a, 6969);
@@ -250,7 +320,7 @@ int main(int argc, char **argv)
         ft_error("Los argumentos han de ser númericos.");
         exit(0);
     }
-
+    //push(stack_a, 123);
     if (stack_a->next != NULL) //así solo imprime si van bien las cosas
         ft_stack_printer(stack_a);
     

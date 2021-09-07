@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/07/22 12:08:12 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/07 14:03:45 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int *reverse_array(int *nums, int size)
+long long int *reverse_array(long long *nums, int size)
 {
    int i;
    int t;
@@ -80,7 +80,7 @@ int *reverse_array(int *nums, int size)
   return(nums);
 }
 
-int ft_is_sort(int *array, int argc)
+int ft_is_sort(long long *array, int argc)
 {
 	int i;
 	int j;
