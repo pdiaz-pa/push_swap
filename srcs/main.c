@@ -6,74 +6,37 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/07 14:19:42 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/08 14:50:06 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_is_dup(long long *nums)
+int ft_is_dup(long long *nums, int argc)
 {
     int i;
-
-    long long  max;
+    int j;
     long long *checker;
 
-    checker = NULL;
-    max = 0;
     i = 1;
- 
-    while(nums[i] != '\0')
-    {
-        if (nums[i] > max)
-            max = nums[i];
-        i++;
-    }
-    checker = malloc(sizeof(long long) * max + 1);
-    i = 0;
-    while (checker[i] != '\0')
-    {
-        checker[i] = 0;
-        i++;
-    }
+    j = 1;
+    checker = nums;
     
-    i = 1;
-    while(nums[i] != '\0')
+    while (i != argc)
     {
-        if (checker[nums[i]] == 0)
-            checker[nums[i]] = nums[i];
-        else
-            return(-1);
-        i++;
-    }
-    free(checker);
-    return(0);
-}
-
-long long *ft_positivizer(long long *nums)
-{
-    int i;
-    int min;
-    
-    i = 1;
-    min = 0;
-
-    while(nums[i] != '\0')
-    {
-        if (nums[i] < min)
+        while (j != argc)
         {
-            min = nums[i];
-            printf("%d ey\n", min);
+            if (checker[j] == nums[i] && j != i)
+            {
+                printf("%lld ESTE SE REPITE!\n", checker[j]);
+                return (-1);
+            }
+            j++;
         }
+        j = 1;
         i++;
     }
-    i = 1;
-    while(nums[i] != '\0')
-    {
-        nums[i] = nums[i] + (min * -1);
-        i++;
-    }
-    return(nums);
+    return(0);
 }
 
 void ft_error(char *str)
@@ -111,17 +74,6 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 		}
 	}
 }
-void ft_stack_printer(t_stack *stack)
-{
-    stack = stack->next; // para que no se imprima el primer 0 (ni idea de si está bien esto, debería estarlo, ya que cuando haces un push, lo hace por debajo del 0).
-    while(stack->next != NULL) // imprime cada nodo 
-    {
-        printf("%d->", stack->data);
-        stack = stack->next;
-    }
-    printf("NULL\n");
-}
-
 
 int ft_args_array(int argc, char **argv, t_stack *a)
 {
@@ -130,7 +82,6 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     int j;
     i = 1;
     j = 0;
-    
     nums = (long long *)malloc(sizeof(long long) * (argc + 1));
     
     while (i < argc)
@@ -148,92 +99,27 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         printf("%lld data \n", nums[i]);
         j = 0;
         i++;
-        
     }
+    
     nums = reverse_array(nums, argc);
     nums[i++] = '\0';
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_sort(nums, argc) == -1)
     {
         ft_error("Ya están ordenados.\n");
-        return(-2);
+        return(-1);
     }
-    /* ESTA MIERDA NO FUNCIONA
-    if (ft_is_dup(nums) == -1)
+  
+    if (ft_is_dup(nums, argc) == -1)
     {
         ft_error("No puede haber números duplicados.\n");
-        return(-2);
+        return(-1);
     }
-    */
+
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
     //push(a, 444);
     //push(a, 6969);
-    
     return(0);
-}
-
-t_stack *ft_init_t_stack(void)
-{
-    t_stack *stack;
-    stack = (t_stack *)malloc(sizeof(t_stack));
-    stack->prev = NULL;
-    stack->next = NULL;
-    stack->data = 0;
-
-    return(stack);
-}
-
-int ft_num_counter(char *argv)
-{
-    int i;
-    int j;
-
-    j = 0;
-    i = 0;
-    
-    while (argv[i] != '\0')
-    {
-        if(argv[i] == ' ')
-            j++;
-        i++;
-    }
-    return(j);
-}
-
-
-int ft_space_checker(char *argv)
-{
-    int i;
-    i = 0;
-    while (argv[i] != '\0')
-    {
-        if(argv[i] == ' ')
-            return(1);
-        i++;
-    }
-    return(0);
-}
-
-void	ft_free_stacks(t_stack *a, t_stack *b)
-{
-	t_stack *nstack;
-
-	while (a)
-	{
-		nstack = a->next;
-		free(a);
-		a->next = NULL;
-		a->prev = NULL;
-		a = nstack;
-	}
-	while (b)
-	{
-		nstack = b->next;
-		free(b);
-		b->next = NULL;
-		b->prev = NULL;
-		b = nstack;
-	}
 }
 
 /*
@@ -270,12 +156,14 @@ char **ft_splitter(char **argv, int argc)
     char **splitted;
     int i;
 
-    i = 0;
+    i = 1;
     splitted = NULL;
 
+    argc = argc - 1 + 1;
     while(i < argc)
     {
-        splitted = ft_split(argv[i], ' '); // por algún motivo solo está guardando el segundo número
+
+        splitted = ft_split(argv[1], ' '); // por algún motivo solo está guardando el segundo número
         i++;
     }
 
@@ -314,17 +202,27 @@ int main(int argc, char **argv)
 
     if (splitted == NULL)
         splitted = argv;
-
     if(ft_args_array(argc, splitted, stack_a) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
     {
-        ft_error("Los argumentos han de ser númericos.");
+        ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
         exit(0);
     }
+    
     //push(stack_a, 123);
     if (stack_a->next != NULL) //así solo imprime si van bien las cosas
         ft_stack_printer(stack_a);
+
+    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+        if(ft_size_selector(stack_a) == 2)
+            ft_sort_two(stack_a, stack_b);
+        if(ft_size_selector(stack_a) == 3)
+            ft_sort_three(stack_a, stack_b);
+        if(ft_size_selector(stack_a) == 5)
+            ft_sort_five(stack_a, stack_b);
+        if(ft_size_selector(stack_a) > 5)
+            ft_sort_lot(stack_a, stack_b);
     
     //ft_free_stacks(t_stack_a, t_stack_b);
-    //ft_size_selector(stack_a, stack_b, argc);
+
     printf("%s", "cool\n");
 }

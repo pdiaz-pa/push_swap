@@ -33,4 +33,20 @@ char		*ft_fd_strdup(const char *s, size_t lenword);
 size_t		ft_lenword(char const *s, char c);
 size_t		ft_cntword(char const *s, char c);
 void	ft_bzero(void *s, size_t n);
+
+void ft_stack_printer(t_stack *stack);
+t_stack *ft_init_t_stack(void);
+void	ft_free_stacks(t_stack *a, t_stack *b);
+
+int ft_sort_two();
+int ft_sort_three();
+int ft_sort_five();
+int ft_sort_lot();
+
+int ft_space_checker(char *argv);
+int ft_num_counter(char *argv);
+int ft_size_selector(t_stack *stack);
+long long *ft_positivizer(long long *nums);
+
+
 #endif

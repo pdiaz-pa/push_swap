@@ -43,6 +43,7 @@ char		*ft_fd_strdup(const char *s, size_t lenword)
 		return (0);
 	while (idx < lenword)
 	{
+
 		arr[idx] = s[idx];
 		idx++;
 	}

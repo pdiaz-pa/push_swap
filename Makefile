@@ -11,6 +11,9 @@ SRC = 	ft_utils.c 	\
 		ops.c		\
 		main.c 		\
 		ft_utils_split.c \
+		ft_sort.c \
+		ft_stack.c \
+		ft_more_utils.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 
