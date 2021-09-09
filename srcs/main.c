@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/08 14:50:06 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/09 14:34:42 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 	while (idx < array_size - 1)
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
-    
+        printf("%s", "Creando nodo...\n");
 		if (!new_node)
 			ft_error("fuckyou");
 		if (head->next == NULL)
@@ -80,6 +80,8 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     int i;
     long long *nums;
     int j;
+    int z;
+    z = 0;
     i = 1;
     j = 0;
     nums = (long long *)malloc(sizeof(long long) * (argc + 1));
@@ -100,7 +102,6 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         j = 0;
         i++;
     }
-    
     nums = reverse_array(nums, argc);
     nums[i++] = '\0';
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
@@ -115,7 +116,11 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         ft_error("No puede haber números duplicados.\n");
         return(-1);
     }
-
+    while(nums[z] != '\0')
+    {
+        printf("%lld numeritos\n", nums[z]);
+        z++;
+    }
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
     //push(a, 444);
     //push(a, 6969);
@@ -214,7 +219,7 @@ int main(int argc, char **argv)
 
     if (stack_a->next != NULL) //así solo imprime si van bien las cosas
         if(ft_size_selector(stack_a) == 2)
-            ft_sort_two(stack_a, stack_b);
+            ft_sort_two(stack_a);
         if(ft_size_selector(stack_a) == 3)
             ft_sort_three(stack_a, stack_b);
         if(ft_size_selector(stack_a) == 5)

@@ -14,6 +14,7 @@ SRC = 	ft_utils.c 	\
 		ft_sort.c \
 		ft_stack.c \
 		ft_more_utils.c \
+		ft_swap.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 

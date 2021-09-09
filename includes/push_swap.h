@@ -38,10 +38,15 @@ void ft_stack_printer(t_stack *stack);
 t_stack *ft_init_t_stack(void);
 void	ft_free_stacks(t_stack *a, t_stack *b);
 
-int ft_sort_two();
+int ft_sort_two(t_stack *stack_a);
 int ft_sort_three();
 int ft_sort_five();
 int ft_sort_lot();
+
+void    sa(t_stack *stack_a);
+void    sb(t_stack *stack_b);
+void    ss(t_stack *stack_a, t_stack *stack_b);
+
 
 int ft_space_checker(char *argv);
 int ft_num_counter(char *argv);

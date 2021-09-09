@@ -27,3 +27,7 @@ FALLOS:
 -Aún permite números repetidos. // Solucionado
 -No coge aún un único argumento entrecomillado.
 
+-Definitivamente hay un 0 como primer nodo. 
+Hay que rastrear de dónde viene, porque al hacer sa, aparece en el printf de los nodos.
+En nums[i] está entrando un número que no queremos.
+
