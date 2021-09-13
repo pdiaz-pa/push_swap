@@ -2,7 +2,7 @@
 
 void ft_stack_printer(t_stack *stack)
 {
-    //stack = stack->next; // para que no se imprima el primer 0 (ni idea de si está bien esto, debería estarlo, ya que cuando haces un push, lo hace por debajo del 0).
+
     while(stack->next != NULL) // imprime cada nodo 
     {
         printf("%d->", stack->data);
@@ -17,7 +17,7 @@ t_stack *ft_init_t_stack(void)
     stack = (t_stack *)malloc(sizeof(t_stack));
     stack->prev = NULL;
     stack->next = NULL;
-    stack->data = 0;
+    stack->data = 696969;
 
     return(stack);
 }

@@ -39,19 +39,29 @@ t_stack *ft_init_t_stack(void);
 void	ft_free_stacks(t_stack *a, t_stack *b);
 
 int ft_sort_two(t_stack *stack_a);
-int ft_sort_three();
+int ft_sort_three(t_stack *stack_a);
 int ft_sort_five();
 int ft_sort_lot();
 
 void    sa(t_stack *stack_a);
 void    sb(t_stack *stack_b);
 void    ss(t_stack *stack_a, t_stack *stack_b);
+void    ra(t_stack *stack_a);
+void    rb(t_stack *stack_b);
+void    rr(t_stack *stack_a, t_stack *stack_b);
+void    rra(t_stack *stack_a);
+void    rrb(t_stack *stack_b);
+void    rrr(t_stack *stack_a, t_stack *stack_b);
 
-
+t_stack	*ft_find_last_lst(t_stack *stack);
+void	ft_push_last(t_stack *head, int data);
+void	ft_pop_last(t_stack *head);
 int ft_space_checker(char *argv);
 int ft_num_counter(char *argv);
 int ft_size_selector(t_stack *stack);
 long long *ft_positivizer(long long *nums);
+int ft_size_stack(t_stack *head);
+void ft_error(char *str);
 
 
 #endif

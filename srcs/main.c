@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/09 14:34:42 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/13 15:12:21 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 			new_node->next = NULL;
 			new_node->prev = head;
 			head->next = new_node;
+            printf("%s", "EL PEPE\n");
 		}
 		else
 		{
@@ -221,12 +222,14 @@ int main(int argc, char **argv)
         if(ft_size_selector(stack_a) == 2)
             ft_sort_two(stack_a);
         if(ft_size_selector(stack_a) == 3)
-            ft_sort_three(stack_a, stack_b);
+            ft_sort_three(stack_a);
         if(ft_size_selector(stack_a) == 5)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
     
+    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+        ft_stack_printer(stack_a);
     //ft_free_stacks(t_stack_a, t_stack_b);
 
     printf("%s", "cool\n");

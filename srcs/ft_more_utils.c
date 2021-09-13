@@ -34,9 +34,8 @@ int ft_size_selector(t_stack *stack)
 {
     int nbr_nodes;
 
-    nbr_nodes = 0;
+    nbr_nodes = -1;
 
-    stack = stack->next; // para que no se imprima el primer 0 (ni idea de si está bien esto, debería estarlo, ya que cuando haces un push, lo hace por debajo del 0).
     while(stack->next != NULL) // imprime cada nodo 
     {
         nbr_nodes++;
@@ -62,7 +61,7 @@ long long *ft_positivizer(long long *nums)
 
         i++;
     }
-    i = 1;
+    i = 0;
     while(nums[i] != '\0')
     {
         nums[i] = nums[i] + (min * -1);
@@ -70,4 +69,19 @@ long long *ft_positivizer(long long *nums)
         i++;
     }
     return(nums);
+}
+
+int ft_size_stack(t_stack *head)
+{
+	t_stack *aux;
+	int		size;
+
+	size = 0;
+	aux = head->next;
+	while (aux)
+	{
+		aux = aux->next;
+		size += 1;
+	}
+	return (size);
 }
