@@ -3,7 +3,7 @@
 void ft_stack_printer(t_stack *stack)
 {
 
-    while(stack->next != NULL) // imprime cada nodo 
+    while(stack) // imprime cada nodo
     {
         printf("%d->", stack->data);
         stack = stack->next;

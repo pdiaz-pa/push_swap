@@ -22,7 +22,8 @@ void    pb(t_stack *stack_a, t_stack *stack_b)
     size = ft_size_stack(stack_a);
     if (size < 2)
         return ;
+    auxdata = stack_a->next->data;
     pop(stack_a);
-    ft_push_first(stack_a, auxdata);
+    ft_push_first(stack_b, auxdata);
     printf("%s", "pb\n");
 }

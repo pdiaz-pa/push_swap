@@ -7,6 +7,7 @@ void    rra(t_stack *stack_a)
 
     last = ft_find_last_lst(stack_a);
     auxdata = last->data;
+    //printf("%d EL AUXDATA DE RRA\n", auxdata);
 	ft_pop_last(stack_a);
     ft_push_first(stack_a, auxdata);
     printf("%s", "rra\n");
@@ -18,7 +19,7 @@ void    rrb(t_stack *stack_b)
     t_stack *last;
 
     last = ft_find_last_lst(stack_b);
-    auxdata = last->data;
+    auxdata = stack_b->next->data;
 	ft_pop_last(stack_b);
     ft_push_first(stack_b, auxdata);
     printf("%s", "rrb\n");

@@ -34,8 +34,7 @@ int ft_size_selector(t_stack *stack)
 {
     int nbr_nodes;
 
-    nbr_nodes = -1;
-
+    nbr_nodes = 0;
     while(stack->next != NULL) // imprime cada nodo 
     {
         nbr_nodes++;
@@ -49,7 +48,7 @@ long long *ft_positivizer(long long *nums)
     int i;
     int min;
     
-    i = 1;
+    i = 0;
     min = 0;
 
     while(nums[i] != '\0')
@@ -65,7 +64,7 @@ long long *ft_positivizer(long long *nums)
     while(nums[i] != '\0')
     {
         nums[i] = nums[i] + (min * -1);
-        printf("%lld: positivizer working!!!\n", nums[i]);
+        //printf("%lld: positivizer working!!!\n", nums[i]);
         i++;
     }
     return(nums);

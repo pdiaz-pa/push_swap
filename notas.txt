@@ -27,7 +27,9 @@ FALLOS:
 -Aún permite números repetidos. // Solucionado
 -No coge aún un único argumento entrecomillado.
 
--Definitivamente hay un 0 como primer nodo. 
-Hay que rastrear de dónde viene, porque al hacer sa, aparece en el printf de los nodos.
-En nums[i] está entrando un número que no queremos.
+-Definitivamente hay un 0 como primer nodo. Es el head y no pasa nada.
+En nums[i] está entrando un número que no queremos y nos lo estamos llevando 
+al stack. Se está creando un nodo con mierda al final. //SOLUCIONADO
+
+-Ahora no fufa el sort checker ni el dup checker // SOLUCIONADO
 

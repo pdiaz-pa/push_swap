@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/13 15:12:21 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:35:24 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int ft_is_dup(long long *nums, int argc)
     int j;
     long long *checker;
 
-    i = 1;
-    j = 1;
+    i = 0;
+    j = 0;
     checker = nums;
     
-    while (i != argc)
+    while (i != (argc - 1))
     {
-        while (j != argc)
+        while (j != argc - 1)
         {
             if (checker[j] == nums[i] && j != i)
             {
@@ -54,7 +54,7 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 	while (idx < array_size - 1)
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
-        printf("%s", "Creando nodo...\n");
+        //printf("%s", "Creando nodo...\n");
 		if (!new_node)
 			ft_error("fuckyou");
 		if (head->next == NULL)
@@ -63,7 +63,7 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 			new_node->next = NULL;
 			new_node->prev = head;
 			head->next = new_node;
-            printf("%s", "EL PEPE\n");
+            //printf("%s", "EL PEPE\n");
 		}
 		else
 		{
@@ -98,13 +98,16 @@ int ft_args_array(int argc, char **argv, t_stack *a)
             }
             j++;
         }
-        nums[i] = ft_atoi(argv[i]); 
-        printf("%lld data \n", nums[i]);
         j = 0;
+        nums[z] = ft_atoi(argv[i]); 
+        printf("%lld data \n", nums[z]);
         i++;
+        z++;
     }
-    nums = reverse_array(nums, argc);
-    nums[i++] = '\0';
+
+    nums = reverse_array(nums, (argc - 1));
+    nums[z++] = '\0';
+    z = 0;
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_sort(nums, argc) == -1)
     {
@@ -119,7 +122,7 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     }
     while(nums[z] != '\0')
     {
-        printf("%lld numeritos\n", nums[z]);
+        //printf("%lld numeritos\n", nums[z]);
         z++;
     }
     ft_make_list(a, nums, i); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
@@ -127,35 +130,6 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     //push(a, 6969);
     return(0);
 }
-
-/*
-char **ft_argv_to_splitted(char **argv, char **splitted, int argc)
-{
-    int i;
-    int j;
-    int k;
-
-    i = 1;
-    j = 0;
-    k = 0;
-    splitted = (char **) malloc(sizeof(char *) * (argc + 1));
-
-    while(i < argc)
-    {
-        while(argv[i][j] != '\0')
-        {
-            argv[i][j] = splitted[k][j];
-            j++;
-
-        }
-        splitted[k][j] = '\0';
-        j = 0;
-        i++;
-        k++;
-    }
-    splitted[k][j] = '\0';
-    return(splitted);
-}*/
 
 char **ft_splitter(char **argv, int argc)
 {
@@ -215,9 +189,8 @@ int main(int argc, char **argv)
     }
     
     //push(stack_a, 123);
-    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
-        ft_stack_printer(stack_a);
-
+    //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+    //    ft_stack_printer(stack_a);
     if (stack_a->next != NULL) //así solo imprime si van bien las cosas
         if(ft_size_selector(stack_a) == 2)
             ft_sort_two(stack_a);
@@ -227,10 +200,10 @@ int main(int argc, char **argv)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
-    
     if (stack_a->next != NULL) //así solo imprime si van bien las cosas
         ft_stack_printer(stack_a);
-    //ft_free_stacks(t_stack_a, t_stack_b);
-
+    if (stack_b->next != NULL) //así solo imprime si van bien las cosas
+        ft_stack_printer(stack_b);
+    //ft_free_stacks(stack_a, stack_b);
     printf("%s", "cool\n");
 }

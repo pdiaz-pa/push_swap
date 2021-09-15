@@ -3,20 +3,28 @@
 void    sa(t_stack *stack_a)
 {
     int auxdata;
+    int size;
 
-    auxdata = stack_a->data;
-    stack_a->data = stack_a->next->data;
-    stack_a->next->data = auxdata;
+	size = ft_size_selector(stack_a);
+	if (size < 2)
+		return ;
+	auxdata = stack_a->next->next->data;
+	stack_a->next->next->data = stack_a->next->data;
+	stack_a->next->data = auxdata;
     printf("%s", "sa\n");
 }
 
 void    sb(t_stack *stack_b)
 {
     int auxdata;
+    int size;
 
-    auxdata = stack_b->data;
-    stack_b->data = stack_b->next->data;
-    stack_b->next->data = auxdata;
+	size = ft_size_selector(stack_b);
+	if (size < 2)
+		return ;
+	auxdata = stack_b->next->next->data;
+	stack_b->next->next->data = stack_b->next->data;
+	stack_b->next->data = auxdata;
     printf("%s", "sb\n");
 }
 
