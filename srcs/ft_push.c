@@ -6,9 +6,9 @@ void    pa(t_stack *stack_a, t_stack *stack_b)
     int auxdata;
 
     size = ft_size_stack(stack_b);
-    if (size < 2)
-        return ;
-    auxdata = stack_b->data;
+    //if (size < 2)
+    //    return ;
+    auxdata = stack_b->next->data;
     pop(stack_b);
     ft_push_first(stack_a, auxdata);
     printf("%s", "pa\n");

@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/15 14:35:24 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/16 15:16:23 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_is_dup(long long *nums, int argc)
         {
             if (checker[j] == nums[i] && j != i)
             {
-                printf("%lld ESTE SE REPITE!\n", checker[j]);
+                //printf("%lld ESTE SE REPITE!\n", checker[j]);
                 return (-1);
             }
             j++;
@@ -100,7 +100,7 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         }
         j = 0;
         nums[z] = ft_atoi(argv[i]); 
-        printf("%lld data \n", nums[z]);
+        //printf("%lld data \n", nums[z]);
         i++;
         z++;
     }
@@ -111,13 +111,15 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_sort(nums, argc) == -1)
     {
-        ft_error("Ya están ordenados.\n");
+        //printf("%s", "OK\n");
+        //ft_error("Ya están ordenados.\n");
         return(-1);
     }
   
     if (ft_is_dup(nums, argc) == -1)
     {
-        ft_error("No puede haber números duplicados.\n");
+        printf("%s", "Error\n");
+        //ft_error("No puede haber números duplicados.\n");
         return(-1);
     }
     while(nums[z] != '\0')
@@ -184,7 +186,7 @@ int main(int argc, char **argv)
         splitted = argv;
     if(ft_args_array(argc, splitted, stack_a) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
     {
-        ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
+        //ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
         exit(0);
     }
     
@@ -200,10 +202,10 @@ int main(int argc, char **argv)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
-    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
-        ft_stack_printer(stack_a);
-    if (stack_b->next != NULL) //así solo imprime si van bien las cosas
-        ft_stack_printer(stack_b);
+    //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+    //    ft_stack_printer(stack_a);
+    //if (stack_b->next != NULL) //así solo imprime si van bien las cosas
+    //    ft_stack_printer(stack_b);
     //ft_free_stacks(stack_a, stack_b);
-    printf("%s", "cool\n");
+    //printf("%s", "cool\n");
 }
