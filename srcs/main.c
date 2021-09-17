@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/16 15:16:23 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:33:28 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,22 @@ void ft_make_list(t_stack *head, long long *nums, int array_size)
 	}
 }
 
+int ft_max_min_int(long long *nums, int argc)
+{
+    int i;
+    
+    i = 0;
+    while (nums[i] < (argc - 1))
+    {
+        if (nums[i] > 2147483647 || nums[i] < -2147483648)
+        {
+            return(-1);
+        }
+        i++;
+    }
+    return(0);
+}
+
 int ft_args_array(int argc, char **argv, t_stack *a)
 {
     int i;
@@ -93,7 +109,8 @@ int ft_args_array(int argc, char **argv, t_stack *a)
         {
             if (ft_isdigit(argv[i][j]) == 0)
             {
-                ft_error("Los argumentos han de ser númericos.\n");
+                printf("%s", "Error\n");
+                //ft_error("Los argumentos han de ser númericos.\n");
                 return(-1);
             }
             j++;
@@ -108,10 +125,16 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     nums = reverse_array(nums, (argc - 1));
     nums[z++] = '\0';
     z = 0;
+    if (ft_max_min_int(nums, argc) == -1)
+    {
+        printf("%s", "Error");
+        return(-1);
+    }
+
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_sort(nums, argc) == -1)
     {
-        //printf("%s", "OK\n");
+        //printf("%s", "Error\n");
         //ft_error("Ya están ordenados.\n");
         return(-1);
     }
@@ -144,7 +167,6 @@ char **ft_splitter(char **argv, int argc)
     argc = argc - 1 + 1;
     while(i < argc)
     {
-
         splitted = ft_split(argv[1], ' '); // por algún motivo solo está guardando el segundo número
         i++;
     }
@@ -161,7 +183,7 @@ int main(int argc, char **argv)
     splitted = NULL;
     if (argc < 2)
     {
-        ft_error("No hay argumentos");
+        //ft_error("No hay argumentos");
         return(0);
     }
 
@@ -169,7 +191,7 @@ int main(int argc, char **argv)
     {
         if (ft_space_checker(argv[1]) == 0)
         {
-            printf("OK\n");
+            //printf("OK\n");
             return (-1);
         }
         if (ft_space_checker(argv[1]) > 0)
@@ -181,15 +203,13 @@ int main(int argc, char **argv)
     
     stack_a = ft_init_t_stack(); //init t_stack reserva memoria para un stack e inicializa su dato a 0 y sus punteros a NULL
     stack_b = ft_init_t_stack();
-
     if (splitted == NULL)
         splitted = argv;
     if(ft_args_array(argc, splitted, stack_a) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
     {
         //ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
-        exit(0);
+        return(0);
     }
-    
     //push(stack_a, 123);
     //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
     //    ft_stack_printer(stack_a);
@@ -198,6 +218,8 @@ int main(int argc, char **argv)
             ft_sort_two(stack_a);
         if(ft_size_selector(stack_a) == 3)
             ft_sort_three(stack_a);
+        if(ft_size_selector(stack_a) == 4)
+            ft_sort_four(stack_a, stack_b);
         if(ft_size_selector(stack_a) == 5)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
@@ -208,4 +230,5 @@ int main(int argc, char **argv)
     //    ft_stack_printer(stack_b);
     //ft_free_stacks(stack_a, stack_b);
     //printf("%s", "cool\n");
+
 }

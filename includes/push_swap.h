@@ -40,8 +40,9 @@ void	ft_free_stacks(t_stack *a, t_stack *b);
 
 int ft_sort_two(t_stack *stack_a);
 int ft_sort_three(t_stack *stack_a);
+int ft_sort_four(t_stack *stack_a, t_stack *stack_b);
 int ft_sort_five(t_stack *a, t_stack *b);
-int ft_sort_lot();
+int ft_sort_lot(t_stack *a, t_stack *b);
 
 void    sa(t_stack *stack_a);
 void    sb(t_stack *stack_b);
@@ -54,6 +55,9 @@ void    rrb(t_stack *stack_b);
 void    rrr(t_stack *stack_a, t_stack *stack_b);
 void    pa(t_stack *stack_a, t_stack *stack_b);
 void    pb(t_stack *stack_a, t_stack *stack_b);
+
+int ft_min_finder(t_stack *stack_a, int max);
+int ft_max_finder(t_stack *stack_a);
 
 t_stack	*ft_find_last_lst(t_stack *stack);
 void	ft_push_last(t_stack *head, int data);

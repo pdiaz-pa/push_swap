@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/15 13:18:46 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/17 12:22:45 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int ft_is_sort(long long *array, int argc)
 	
 	while (k < i)
 	{
-		if(array[k] > array[k + 1])
+		if(array[k] >= array[k + 1])
 			j++;
 		k++;
 	}
