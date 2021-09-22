@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/17 15:33:28 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/22 17:13:06 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,10 +224,10 @@ int main(int argc, char **argv)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
-    //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
-    //    ft_stack_printer(stack_a);
-    //if (stack_b->next != NULL) //así solo imprime si van bien las cosas
-    //    ft_stack_printer(stack_b);
+    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+        ft_stack_printer(stack_a);
+    if (stack_b->next != NULL) //así solo imprime si van bien las cosas
+        ft_stack_printer(stack_b);
     //ft_free_stacks(stack_a, stack_b);
     //printf("%s", "cool\n");
 

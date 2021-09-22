@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:33 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/17 12:22:33 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:19:29 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void    rrb(t_stack *stack_b)
     t_stack *last;
 
     last = ft_find_last_lst(stack_b);
-    auxdata = stack_b->next->data;
+    auxdata = last->data;
     ft_pop_last(stack_b);
     ft_push_first(stack_b, auxdata);
     printf("%s", "rrb\n");

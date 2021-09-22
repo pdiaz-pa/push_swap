@@ -58,7 +58,7 @@ void    pb(t_stack *stack_a, t_stack *stack_b);
 
 int ft_min_finder(t_stack *stack_a, int max);
 int ft_max_finder(t_stack *stack_a);
-
+int ft_num_in_chunk(t_stack *stack, int max_num);
 t_stack	*ft_find_last_lst(t_stack *stack);
 void	ft_push_last(t_stack *head, int data);
 void	ft_pop_last(t_stack *head);
