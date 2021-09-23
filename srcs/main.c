@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/22 17:13:06 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/23 15:51:52 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ int ft_is_dup(long long *nums, int argc)
     j = 0;
     checker = nums;
     
-    while (i != (argc - 1))
+    while (i != argc)
     {
-        while (j != argc - 1)
+        while (j != argc)
         {
             if (checker[j] == nums[i] && j != i)
             {
-                //printf("%lld ESTE SE REPITE!\n", checker[j]);
+                printf("%lld ESTE SE REPITE!\n", checker[j]);
                 return (-1);
             }
             j++;
         }
-        j = 1;
+        j = 0;
         i++;
     }
     return(0);
@@ -85,6 +85,8 @@ int ft_max_min_int(long long *nums, int argc)
     {
         if (nums[i] > 2147483647 || nums[i] < -2147483648)
         {
+            //printf("%d la i\n", i);
+            //printf("%lld el num\n", nums[i]);
             return(-1);
         }
         i++;
@@ -104,12 +106,13 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     nums = (long long *)malloc(sizeof(long long) * (argc + 1));
     
     while (i < argc)
-    {  
+    {
         while(argv[i][j] != '\0')
         {
             if (ft_isdigit(argv[i][j]) == 0)
             {
                 printf("%s", "Error\n");
+                
                 //ft_error("Los argumentos han de ser númericos.\n");
                 return(-1);
             }
@@ -125,26 +128,28 @@ int ft_args_array(int argc, char **argv, t_stack *a)
     nums = reverse_array(nums, (argc - 1));
     nums[z++] = '\0';
     z = 0;
-    if (ft_max_min_int(nums, argc) == -1)
+    if (ft_max_min_int(nums, argc - 1) == -1)
     {
-        printf("%s", "Error");
+        printf("%s", "Error\n");
         return(-1);
     }
 
     nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
+     
+    if (ft_is_dup(nums, argc - 1) == -1)
+    {
+        printf("%s", "Error\n");
+        printf("%s", "Errorcito\n");
+        //ft_error("No puede haber números duplicados.\n");
+        return(-1);
+    }
     if (ft_is_sort(nums, argc) == -1)
     {
         //printf("%s", "Error\n");
         //ft_error("Ya están ordenados.\n");
         return(-1);
     }
-  
-    if (ft_is_dup(nums, argc) == -1)
-    {
-        printf("%s", "Error\n");
-        //ft_error("No puede haber números duplicados.\n");
-        return(-1);
-    }
+
     while(nums[z] != '\0')
     {
         //printf("%lld numeritos\n", nums[z]);
@@ -224,11 +229,9 @@ int main(int argc, char **argv)
             ft_sort_five(stack_a, stack_b);
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
-    if (stack_a->next != NULL) //así solo imprime si van bien las cosas
-        ft_stack_printer(stack_a);
-    if (stack_b->next != NULL) //así solo imprime si van bien las cosas
-        ft_stack_printer(stack_b);
+    //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
+    //    ft_stack_printer(stack_a);
+    //if (stack_b->next != NULL) //así solo imprime si van bien las cosas
+    //   ft_stack_printer(stack_b);
     //ft_free_stacks(stack_a, stack_b);
-    //printf("%s", "cool\n");
-
 }

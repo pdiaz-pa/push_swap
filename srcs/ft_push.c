@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:29 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/22 14:16:10 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:09:06 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    pa(t_stack *stack_a, t_stack *stack_b)
     int auxdata;
 
     size = ft_size_stack(stack_b);
-    if (size < 2)
+    if (size < 1)
         return ;
     auxdata = stack_b->next->data;
     pop(stack_b);
@@ -32,7 +32,7 @@ void    pb(t_stack *stack_a, t_stack *stack_b)
     int auxdata;
 
     size = ft_size_stack(stack_a);
-    if (size < 2)
+    if (size < 1)
         return ;
     auxdata = stack_a->next->data;
     pop(stack_a);

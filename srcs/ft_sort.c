@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:42 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/22 17:29:25 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/23 13:56:57 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int ft_sort_five(t_stack *stack_a, t_stack *stack_b)
 {
     int max;
     int min;
-    
     max = ft_max_finder(stack_a);
     min = ft_min_finder(stack_a, max);
     if (max == stack_a->next->next->next->next->next->data)
@@ -224,7 +223,7 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
     chunk_size = max / 5;
     chunk_multiplier = 1;
     //printf("%s", "ORDENANDO MAZO\n");
-    while (ft_size_stack(stack_a) != 1)
+    while (ft_size_stack(stack_a) > 1)
     {
         //printf("%s", "eyeyey\n");
         while (chunk_multiplier <= 5)
@@ -235,11 +234,13 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
             hold_second = ft_second_finder(stack_a, (chunk_size * chunk_multiplier), hold_first);
             //printf("%d EL FIRST\n", hold_first);
             //printf("%d EL SECOND\n", hold_second);
+            //printf("%d CHUNK MULTIPLIER\n", chunk_multiplier);
             //sleep(1);
             if (hold_first != -1 || hold_second != -1)
             {
                 if ((hold_second == -1)|| (ft_first_count(stack_a, hold_first) < ft_second_count(stack_a, hold_second)))
                 {
+                    
                     if ((ft_first_count(stack_a->next, hold_first)) < half)
                     {
                         while(stack_a->next->data != hold_first)
@@ -258,10 +259,13 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
                              //sleep(1);
                         }
                         pb(stack_a, stack_b);
+                        
                     }
+                
                 }
                 else
                 {
+                    
                     if ((ft_second_count(stack_a, hold_second)) < half)
                     {
                         while(stack_a->next->data != hold_second)
@@ -271,6 +275,7 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
                             //sleep(1);
                         }
                         pb(stack_a, stack_b);
+
                     }
                     else
                     {
@@ -283,18 +288,17 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
                         pb(stack_a, stack_b);
                     }
                 }
+                
             if (ft_num_in_chunk(stack_a, (chunk_size * chunk_multiplier)) == 0)
             {
-                //printf("%s", "chunki\n");
                 chunk_multiplier++;      
             }
                       
             }
         }
-        pb(stack_a, stack_b);
-        //pb(stack_a, stack_b);
+    pb(stack_a, stack_b);
     }
-    ft_stack_printer(stack_b);
+    //ft_stack_printer(stack_b);
     //sleep(100);
     while (ft_size_stack(stack_b) != 1)
     {
@@ -302,7 +306,7 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
         half = size / 2;
         max = ft_max_finder(stack_b);
         min = ft_min_finder(stack_b, max);
-        //printf("%d min B\n", min);
+        //printf("%d max B\n", max);
         //sleep(100);
         if ((ft_first_count(stack_b, max)) < half)
         {
@@ -315,7 +319,7 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
         }
         else
         {
-            while(stack_b->next->data != max)
+            while(stack_b->next->data < max)
             {
                 //printf("%d RRB\n", stack_b->next->data);
                 rrb(stack_b);
@@ -324,5 +328,11 @@ int ft_sort_lot(t_stack *stack_a, t_stack *stack_b)
         }
     }
     pa(stack_a, stack_b);
+    rra(stack_a);
+    rra(stack_a);
+    if (stack_a->next->data > stack_a->next->next->data)
+        sa(stack_a);
+    ra(stack_a);
+    ra(stack_a);
     return(0);
 }
