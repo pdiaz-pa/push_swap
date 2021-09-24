@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/17 12:22:45 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:16:23 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ long long int *reverse_array(long long *nums, int size)
   return(nums);
 }
 
-int ft_is_sort(long long *array, int argc)
+int ft_is_sort(long long *array, int size)
 {
 	int i;
 	int j;
@@ -91,11 +91,11 @@ int ft_is_sort(long long *array, int argc)
 	k = 0;
 	
 	
-	while (i < (argc - 1)) 
+	while (i < (size - 1)) 
 		i++;
-	
 	while (k < i)
 	{
+		
 		if(array[k] >= array[k + 1])
 			j++;
 		k++;
