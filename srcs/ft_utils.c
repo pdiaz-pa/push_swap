@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/24 15:16:23 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:39:28 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,44 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-int	ft_atoi(const char *str)
+int			ft_isspace(char c)
 {
-	int	i;
-	int	result;
-	int	neg;
+	return (c == '\f' || c == '\n' || c == 'r' ||
+	c == '\t' || c == '\v' || c == ' ');
+}
 
-	i = 0;
-	neg = 1;
+int			ft_isalpha(char c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+int	ft_atoll(char *str)
+{
+	long long	result;
+	int			sign;
+
 	result = 0;
-	while (str[i] == 32 || str[i] == 10 || str[i] == 9 || str[i] == 12 ||
-			str[i] == 13 || str[i] == 11)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	sign = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (str[i] == '-')
-			neg = -1;
-		i++;
+		if (*str++ == '-')
+			sign *= -1;
 	}
-	while (str[i] <= '9' && str[i] >= '0')
+	while (*str >= '0' && *str <= '9')
 	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
+		result = result * 10 + (*str - '0');
+		str++;
 	}
-	return (result * neg);
+	if (ft_isalpha(*str))
+		ft_error(0);
+	return (sign * result);
 }
 
 int	ft_isdigit(int c)
 {
-	if ((c > 47 && c < 58) || c == '-')
+	if ((c >= '0' && c <= '9')|| c == '-')
 	{
 		return (1);
 	}

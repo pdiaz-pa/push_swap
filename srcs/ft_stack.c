@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:45 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/23 12:20:34 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/27 14:29:45 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_stack_printer(t_stack *stack)
 {
 	while (stack)
 	{
-		if (stack->next != NULL && stack->next->data < stack->data && stack->data != 696969)
+		/*if (stack->next != NULL && stack->next->data < stack->data && stack->data != 696969)
 		{
 			printf("%d stop!\n", stack->data);
 			return ;
-		}
+		}*/
 		
 		printf("%d->", stack->data);
 		stack = stack->next;

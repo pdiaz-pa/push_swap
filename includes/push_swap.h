@@ -19,7 +19,7 @@ typedef struct s_stack {
 }t_stack;
 
 
-int	ft_atoi(const char *str);
+int	ft_atoll(char *str);
 int	ft_isdigit(int c);
 void push(t_stack *head, int data);
 void pop(t_stack *head);
@@ -69,5 +69,9 @@ long long *ft_positivizer(long long *nums);
 int ft_size_stack(t_stack *head);
 void ft_error(char *str);
 
+
+
+
+void	free_str(char **str);
 
 #endif
