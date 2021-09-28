@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/27 16:39:28 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/28 09:48:55 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	ft_atoll(char *str)
 		str++;
 	}
 	if (ft_isalpha(*str))
-		ft_error(0);
+	{
+		printf("%s", "Error que flipas\n");
+		return(-1);
+	}
 	return (sign * result);
 }
 
@@ -66,7 +69,7 @@ int	ft_isdigit(int c)
 		return (1);
 	}
 	else
-		return (0);
+		return (-1);
 }
 
 long long int *reverse_array(long long *nums, int size)

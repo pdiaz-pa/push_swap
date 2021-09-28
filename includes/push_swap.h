@@ -65,7 +65,7 @@ void	ft_pop_last(t_stack *head);
 int ft_space_checker(char *argv);
 int ft_num_counter(char *argv);
 int ft_size_selector(t_stack *stack);
-long long *ft_positivizer(long long *nums);
+long long *ft_positivizer(long long *nums, int size);
 int ft_size_stack(t_stack *head);
 void ft_error(char *str);
 

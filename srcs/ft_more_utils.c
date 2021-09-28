@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:23 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/27 15:07:38 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/28 10:48:33 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int ft_size_selector(t_stack *stack)
     return (nbr_nodes);
 }
 
-long long *ft_positivizer(long long *nums)
+long long *ft_positivizer(long long *nums, int size)
 {
     int i;
     int min;
@@ -63,7 +63,7 @@ long long *ft_positivizer(long long *nums)
     i = 0;
     min = 0;
 
-    while(nums[i] != '\0')
+    while(i < size)
     {
         if (nums[i] < min)
         {
@@ -73,10 +73,11 @@ long long *ft_positivizer(long long *nums)
         i++;
     }
     i = 0;
-    while(nums[i] != '\0')
+    while(i < size)
     {
         nums[i] = nums[i] + (min * -1);
-        //printf("%lld: positivizer working!!!\n", nums[i]);
+        /*printf("%d--- ", i);
+        printf("%lld: positivizer working!!!\n", nums[i]);*/
         i++;
     }
     return(nums);

@@ -6,13 +6,13 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/27 17:01:44 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:36:01 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_is_dup(long long *nums, int argc)
+int ft_is_dup(long long *nums, int size)
 {
     int i;
     int j;
@@ -22,13 +22,15 @@ int ft_is_dup(long long *nums, int argc)
     j = 0;
     checker = nums;
     
-    while (i != argc)
+    while (i != size)
     {
-        while (j != argc)
+        while (j != size)
         {
             if (checker[j] == nums[i] && j != i)
             {
-                //printf("%lld ESTE SE REPITE!\n", checker[j]);
+                printf("%lld ESTE SE REPITE!\n", checker[j]);
+                printf("%d JOTA\n", j);
+                printf("%d I\n", i);
                 return (-1);
             }
             j++;
@@ -94,7 +96,7 @@ int ft_max_min_int(long long *nums, int size)
     return(0);
 }
 
-int ft_args_array(int argc, char **splitted, t_stack *a, int size, int argv_or_splitted)
+int ft_args_array(char **splitted, t_stack *a, int size, int argv_or_splitted)
 {
     int i;
     long long *nums;
@@ -112,12 +114,12 @@ int ft_args_array(int argc, char **splitted, t_stack *a, int size, int argv_or_s
     
     while (splitted[i] != '\0')
     {
-        //printf("%s\n", splitted[i]);
+        //printf("%s splitted\n", splitted[i]);
         while(splitted[i][j] != '\0')
         {
             if (ft_isdigit(splitted[i][j]) == -1)
             {
-                //write(1, &splitted[i][j], 1);
+                write(1, &splitted[i][j], 1);
                 printf("%s", "Error\n");
                 //ft_error("Los argumentos han de ser númericos.\n");
                 return(-1);
@@ -126,15 +128,15 @@ int ft_args_array(int argc, char **splitted, t_stack *a, int size, int argv_or_s
         }
         j = 0;
         nums[z] = ft_atoll(splitted[i]);
-        //printf("%lld data \n", nums[z]);
+        /*printf("%d ---", z);
+        printf("%lld data \n", nums[z]);*/
         i++;
         z++;
     }
     if (argv_or_splitted == 1)
         nums = reverse_array(nums, (size));
     else
-        nums = reverse_array(nums, (argc - 1));
-    
+        nums = reverse_array(nums, (size - 1));
     nums[z++] = '\0';
     z = 0;
 /*    if (argv_or_splitted == 1)
@@ -156,15 +158,17 @@ int ft_args_array(int argc, char **splitted, t_stack *a, int size, int argv_or_s
         }
     }
 */
-    nums = ft_positivizer(nums); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
+    nums = ft_positivizer(nums, size); // si hay números negativos hace que el menor de ellos sea 0, así es más fácil trabajar luego
     if (ft_is_dup(nums, (size - 1)) == -1)
     {
+        /*printf("%d SIZE\n", (size));
         printf("%s", "Error\n");
-        //printf("%s", "dup\n");
+        printf("%s", "dup\n");*/
         return(-1);
     }
     if (ft_is_sort(nums, size) == -1)
     {
+        printf("%d SIZE\n", size );
         //printf("%s", "Error\n");
         return(-1);
     }
@@ -172,7 +176,6 @@ int ft_args_array(int argc, char **splitted, t_stack *a, int size, int argv_or_s
         ft_make_list(a, nums, size); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
     else
         ft_make_list(a, nums, (size - 1)); //crea nodos por cada uno de los elementos del array que hemos creado y los enlaza para crear una lista enlazada.
-
     return(0);
 }
 
@@ -185,7 +188,6 @@ int		ft_split_arr_size(char **split_arr)
 		idx++;
 	return (idx);
 }
-
 
 char **ft_splitter(char **argv, int argc)
 {
@@ -235,7 +237,6 @@ int ft_arg_size(char **splitted)
     return(size);
 }
 
-
 int main(int argc, char **argv)
 {
     t_stack *stack_a;
@@ -258,7 +259,6 @@ int main(int argc, char **argv)
         }
         if (ft_space_checker(argv[1]) > 0)
         {
-            //printf("entiendo que hay comillas y espacios y thal\n");
             splitted = ft_splitter(argv, size);
         }
     }
@@ -267,7 +267,7 @@ int main(int argc, char **argv)
     if (splitted == NULL)
     {
         //printf("%s", "NO COMILLAS\n");
-        if (ft_args_array(argc, argv, stack_a, size, 0) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
+        if (ft_args_array(argv, stack_a, size, 0) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
         {
             //ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
             return(0);
@@ -276,7 +276,7 @@ int main(int argc, char **argv)
     else
     {
         size = ft_arg_size(splitted);
-        if (ft_args_array(argc, splitted, stack_a, size, 1) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
+        if (ft_args_array(splitted, stack_a, size, 1) == -1)     //recolectar los args en un array de ints (atoi) mientras vamos comprobando que los args son números positivos o negativos. Hay que comprobar también si los números están duplicados
         {
             //ft_error("Los argumentos han de ser númericos, estar desordenados y no estar duplicados.");
             return(0);
@@ -296,7 +296,7 @@ int main(int argc, char **argv)
         if(ft_size_selector(stack_a) > 5)
             ft_sort_lot(stack_a, stack_b);
     //if (stack_a->next != NULL) //así solo imprime si van bien las cosas
-     //   ft_stack_printer(stack_a);
+    //    ft_stack_printer(stack_a);
     //if (stack_b->next != NULL) //así solo imprime si van bien las cosas
     //   ft_stack_printer(stack_b);
     //ft_free_stacks(stack_a, stack_b);
