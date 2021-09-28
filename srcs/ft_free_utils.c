@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*   ft_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 10:28:45 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/27 14:29:45 by pdiaz-pa         ###   ########.fr       */
+/*   Created: 2021/09/28 15:44:30 by pdiaz-pa          #+#    #+#             */
+/*   Updated: 2021/09/28 15:44:33 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stack_printer(t_stack *stack)
+void	ft_free(char **s, int idx)
 {
-	while (stack)
-	{
-		/*if (stack->next != NULL && stack->next->data < stack->data && stack->data != 696969)
-		{
-			printf("%d stop!\n", stack->data);
-			return ;
-		}*/
-		
-		printf("%d->", stack->data);
-		stack = stack->next;
-	}
-	printf("NULL\n");
-}
-
-t_stack	*ft_init_t_stack(void)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	stack->prev = NULL;
-	stack->next = NULL;
-	stack->data = 696969;
-	return (stack);
+	while (idx--)
+		free(s[idx]);
+	free(s);
 }
 
 void	ft_free_stacks(t_stack *a, t_stack *b)

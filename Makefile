@@ -10,15 +10,18 @@ DIR_O = ./
 SRC = 	ft_utils.c 	\
 		ops.c		\
 		main.c 		\
-		ft_utils_split.c \
+		ft_split_utils.c \
 		ft_sort.c \
-		ft_stack.c \
+		ft_stack_utils.c \
 		ft_more_utils.c \
 		ft_swap.c \
 		ft_rotate.c \
 		ft_reverse_rotate.c \
 		ft_push.c \
 		ft_sort_utils.c \
+		ft_parsing_utils.c \
+		ft_free_utils.c \
+		ft_array_utils.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 

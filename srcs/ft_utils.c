@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/28 09:48:55 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:39:51 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-int			ft_isspace(char c)
+int	ft_isspace(char c)
 {
-	return (c == '\f' || c == '\n' || c == 'r' ||
-	c == '\t' || c == '\v' || c == ' ');
+	return (c == '\f' || c == '\n' || c == 'r' || c == '\t'
+		||c == '\v' || c == ' ');
 }
 
-int			ft_isalpha(char c)
+int	ft_isalpha(char c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
@@ -57,63 +57,27 @@ int	ft_atoll(char *str)
 	if (ft_isalpha(*str))
 	{
 		printf("%s", "Error que flipas\n");
-		return(-1);
+		return (-1);
 	}
 	return (sign * result);
 }
 
-int	ft_isdigit(int c)
+long long	*reverse_array(long long *nums, int size)
 {
-	if ((c >= '0' && c <= '9')|| c == '-')
-	{
-		return (1);
-	}
-	else
-		return (-1);
-}
+	int	i;
+	int	t;
+	int	k;
 
-long long int *reverse_array(long long *nums, int size)
-{
-   int i;
-   int t;
-   int k;
-   
-   i = 0;
-   t = 0;
-   k = 0;
-   while(k < (size / 2))
-   {
-    t = nums[i];                  // Swapping
-    nums[i] = nums[size-k-1];
-    nums[size-k-1] = t;
-    k++;
-    i++;
-   }
-  return(nums);
-}
-
-int ft_is_sort(long long *array, int size)
-{
-	int i;
-	int j;
-	int k;
-	
 	i = 0;
-	j = 0;
+	t = 0;
 	k = 0;
-	
-	
-	while (i < (size - 1)) 
-		i++;
-	while (k < i)
+	while (k < (size / 2))
 	{
-		
-		if(array[k] >= array[k + 1])
-			j++;
+		t = nums[i];
+		nums[i] = nums[size - k - 1];
+		nums[size - k - 1] = t;
 		k++;
+		i++;
 	}
-	if (j == i)
-		return(-1);
-	else
-		return(0);
+	return (nums);
 }
