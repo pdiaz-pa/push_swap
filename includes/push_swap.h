@@ -47,7 +47,7 @@ int ft_sort_two(t_stack *stack_a);
 int ft_sort_three(t_stack *stack_a);
 int ft_sort_four(t_stack *stack_a, t_stack *stack_b);
 int ft_sort_five(t_stack *a, t_stack *b);
-int ft_sort_lot(t_stack *a, t_stack *b);
+int ft_sort_lot(t_stack *a, t_stack *b, int hundred);
 
 void    sa(t_stack *stack_a);
 void    sb(t_stack *stack_b);
@@ -65,7 +65,6 @@ void    pb(t_stack *stack_a, t_stack *stack_b);
 void	ft_push_last(t_stack *head, int data);
 void	ft_push_first(t_stack *head, int data);
 
-int		ft_split_arr_size(char **split_arr);
 int     ft_arg_size(char **splitted);
 int     ft_args_array(char **splitted, t_stack *a, int size, int argv_or_splitted);
 
@@ -82,8 +81,18 @@ long long *ft_positivizer(long long *nums, int size);
 int ft_size_stack(t_stack *head);
 void ft_error(char *str);
 
+void	free_str(char **str);
 int ft_is_dup(long long *nums, int size);
 
-
+int	ft_first_finder(t_stack *stack_a, int max_num);
+int	ft_second_finder(t_stack *stack_a, int max_num, int hold_first);
+int	ft_first_count(t_stack *stack, int hold_first);
+int	ft_second_count(t_stack *stack, int hold_second);
+int	ft_num_in_chunk(t_stack *stack, int max_num);
+void	ft_b_to_a(t_stack *stack_a, t_stack *stack_b);
+void	ft_adjusting(t_stack *stack_a, t_stack *stack_b);
+void	ft_use_first(t_stack *stack_a, t_stack *stack_b, int hold_first, int half);
+void	ft_use_second(t_stack *stack_a, t_stack *stack_b, int hold_second, int half);
+void	ft_a_to_b(t_stack *a, t_stack *b, int chk_size, int chk_multiplier);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/28 14:39:51 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/29 14:12:49 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_atoll(char *str)
 	}
 	if (ft_isalpha(*str))
 	{
+		printf("%s", str);
 		printf("%s", "Error que flipas\n");
 		return (-1);
 	}

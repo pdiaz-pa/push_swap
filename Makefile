@@ -22,6 +22,8 @@ SRC = 	ft_utils.c 	\
 		ft_parsing_utils.c \
 		ft_free_utils.c \
 		ft_array_utils.c \
+		ft_count_and_finder.c \
+		ft_lot_utils.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 

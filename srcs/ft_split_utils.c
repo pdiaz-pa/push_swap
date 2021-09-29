@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 10:28:17 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/28 14:55:05 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/29 15:09:22 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,45 @@ char	*ft_fd_strdup(const char *s, size_t lenword)
 	return (arr);
 }
 
+void	free_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+int		ft_split_arr_size(char **split_arr)
+{
+	int idx;
+
+	idx = 0;
+	while (split_arr[idx])
+		idx++;
+	return (idx);
+}
+
 char	**ft_splitter(char **argv, int argc)
 {
 	char	**splitted;
 	int		i;
-	int		j;
+	int		splitted_size;
+	int		size;
 
-	j = 0;
 	i = 0;
+	size = 0;
 	splitted = NULL;
 	while (i < argc)
 	{
+		
 		splitted = ft_split(argv[i], ' ');
+		splitted_size = ft_split_arr_size(splitted);
+		size += splitted_size;
 		i++;
 	}
 	return (splitted);

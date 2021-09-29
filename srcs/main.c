@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:16 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/28 14:32:06 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/29 15:10:26 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		if (ft_space_checker(argv[1]) > 0)
 			splitted = ft_splitter(argv, size);
 	}
+	
 	stack_a = ft_init_t_stack();
 	stack_b = ft_init_t_stack();
 	if (splitted == NULL)
@@ -44,5 +45,9 @@ int	main(int argc, char **argv)
 			return (0);
 	}
 	ft_sort_selector(stack_a, stack_b);
+	//ft_stack_printer(stack_a);
 	//ft_free_stacks(stack_a, stack_b);
+
+	//system("leaks push_swap");
+
 }
