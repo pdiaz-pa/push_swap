@@ -6,20 +6,32 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:55:43 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 14:46:41 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/30 11:07:01 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_arg_size(char **splitted)
+
+
+int	ft_arg_size(char **argv, int argc)
 {
-	int	size;
+	int		size;
+	int		idx;
+	int		split_size;
+	char	**split_arr;
 
 	size = 0;
-	while (splitted[size] != '\0')
-		size++;
-	return (size);
+	idx = 0;
+	while (idx < argc)
+	{
+		split_arr = ft_split(argv[idx], ' ');
+		split_size = ft_split_arr_size(split_arr);
+		size += split_size;
+		free_str(split_arr);
+		idx++;
+	}
+	return (size - 1);
 }
 
 int	ft_args_array(char **splitted, t_stack *a, int size, int argv_or_splitted)

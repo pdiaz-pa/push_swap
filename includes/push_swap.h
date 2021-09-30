@@ -65,7 +65,7 @@ void    pb(t_stack *stack_a, t_stack *stack_b);
 void	ft_push_last(t_stack *head, int data);
 void	ft_push_first(t_stack *head, int data);
 
-int     ft_arg_size(char **splitted);
+int     ft_arg_size(char **argv, int argc);
 int     ft_args_array(char **splitted, t_stack *a, int size, int argv_or_splitted);
 
 int ft_min_finder(t_stack *stack_a, int max);
@@ -79,10 +79,12 @@ int ft_num_counter(char *argv);
 int ft_size_selector(t_stack *stack);
 long long *ft_positivizer(long long *nums, int size);
 int ft_size_stack(t_stack *head);
-void ft_error(char *str);
+int ft_error(int ret);
 
 void	free_str(char **str);
 int ft_is_dup(long long *nums, int size);
+
+int		ft_split_arr_size(char **split_arr);
 
 int	ft_first_finder(t_stack *stack_a, int max_num);
 int	ft_second_finder(t_stack *stack_a, int max_num, int hold_first);

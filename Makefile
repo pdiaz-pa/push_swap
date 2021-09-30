@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wextra -Werror -Wall -g3 -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall
 
 NAME = push_swap
 

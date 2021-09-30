@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:27:38 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 11:34:54 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/09/30 10:47:09 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_is_dup(long long *nums, int size)
 	i = 0;
 	j = 0;
 	checker = nums;
+
 	while (i != size)
 	{
 		while (j != size)
