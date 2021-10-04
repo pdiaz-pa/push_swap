@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 11:33:38 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 11:34:47 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:26:15 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_second_finder(t_stack *stack_a, int max_num, int hold_first)
 	return (hold_second);
 }
 
-int	ft_first_count(t_stack *stack, int hold_first)
+int	ft_f_cnt(t_stack *stack, int hold_first)
 {
 	int	count;
 
@@ -59,7 +59,7 @@ int	ft_first_count(t_stack *stack, int hold_first)
 	return (count);
 }
 
-int	ft_second_count(t_stack *stack, int hold_second)
+int	ft_s_cnt(t_stack *stack, int hold_second)
 {
 	int	count;
 

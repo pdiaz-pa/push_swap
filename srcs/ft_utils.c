@@ -6,23 +6,11 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:56:40 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 14:12:49 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/10/04 14:49:54 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
-}
 
 int	ft_isspace(char c)
 {
@@ -35,7 +23,7 @@ int	ft_isalpha(char c)
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-int	ft_atoll(char *str)
+long long	ft_atoll(char *str)
 {
 	long long	result;
 	int			sign;
@@ -55,11 +43,7 @@ int	ft_atoll(char *str)
 		str++;
 	}
 	if (ft_isalpha(*str))
-	{
-		printf("%s", str);
-		printf("%s", "Error que flipas\n");
-		return (-1);
-	}
+		return (-9999999999999);
 	return (sign * result);
 }
 

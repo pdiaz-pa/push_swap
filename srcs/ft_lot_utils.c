@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 11:31:08 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 16:05:08 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:29:12 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_b_to_a(t_stack *stack_a, t_stack *stack_b)
 		half = size / 2;
 		max = ft_max_finder(stack_b);
 		min = ft_min_finder(stack_b, max);
-		if ((ft_first_count(stack_b, max)) < half)
+		if ((ft_f_cnt(stack_b, max)) < half)
 		{
 			while (stack_b->next->data != max)
 				rb(stack_b);
@@ -59,63 +59,61 @@ void	ft_adjusting(t_stack *stack_a, t_stack *stack_b)
 	ra(stack_a);
 }
 
-void	ft_use_first(t_stack *stack_a, t_stack *stack_b, int hold_first, int half)
+void	ft_use_frst(t_stack *a, t_stack *b, int hold_first, int half)
 {
-	if ((ft_first_count(stack_a->next, hold_first)) < half)
+	if ((ft_f_cnt(a->next, hold_first)) < half)
 	{
-		while (stack_a->next->data != hold_first)
-			ra(stack_a);
-		pb(stack_a, stack_b);
+		while (a->next->data != hold_first)
+			ra(a);
+		pb(a, b);
 	}
 	else
 	{
-		while (stack_a->next->data != hold_first)
-			rra(stack_a);
-		pb(stack_a, stack_b);
+		while (a->next->data != hold_first)
+			rra(a);
+		pb(a, b);
 	}
 }
 
-void	ft_use_second(t_stack *stack_a, t_stack *stack_b, int hold_second, int half)
+void	ft_use_sec(t_stack *a, t_stack *b, int hold_second, int half)
 {
-	if ((ft_second_count(stack_a, hold_second)) < half)
+	if ((ft_s_cnt(a, hold_second)) < half)
 	{
-		while (stack_a->next->data != hold_second)
-			rra(stack_a);
-		pb(stack_a, stack_b);
+		while (a->next->data != hold_second)
+			rra(a);
+		pb(a, b);
 	}
 	else
 	{
-		while (stack_a->next->data != hold_second)
-			ra(stack_a);
-		pb(stack_a, stack_b);
+		while (a->next->data != hold_second)
+			ra(a);
+		pb(a, b);
 	}
 }
 
-void	ft_a_to_b(t_stack *a, t_stack *b, int chk_div, int chk_multiplier)
+void	ft_a_to_b(t_stack *a, t_stack *b, int chk_div, int chk_mlt)
 {
 	int	size;
-	int	half;
-	int	hold_f;
-	int	hold_s;
-	int chk_size;
+	int	h_f;
+	int	h_s;
+	int	chk_size;
+
 	chk_size = (ft_max_finder(a)) / chk_div;
 	while (ft_size_stack(a) > 1)
 	{
-		while (chk_multiplier <= chk_div)
+		while (chk_mlt <= chk_div)
 		{
 			size = ft_size_stack(a);
-			half = size / 2;
-			hold_f = ft_first_finder(a, (chk_size * chk_multiplier));
-			hold_s = ft_second_finder(a, (chk_size * chk_multiplier), hold_f);
-			if (hold_f != -1 || hold_s != -1)
+			h_f = ft_first_finder(a, (chk_size * chk_mlt));
+			h_s = ft_second_finder(a, (chk_size * chk_mlt), h_f);
+			if (h_f != -1 || h_s != -1)
 			{
-				if ((hold_s == -1) || (ft_first_count(a, hold_f)
-						< ft_second_count(a, hold_s)))
-					ft_use_first(a, b, hold_f, half);
+				if ((h_s == -1) || (ft_f_cnt(a, h_f) < ft_s_cnt(a, h_s)))
+					ft_use_frst(a, b, h_f, (size / 2));
 				else
-					ft_use_second(a, b, hold_s, half);
-				if (ft_num_in_chunk(a, (chk_size * chk_multiplier)) == 0)
-					chk_multiplier++;
+					ft_use_sec(a, b, h_s, (size / 2));
+				if (ft_num_in_chunk(a, (chk_size * chk_mlt)) == 0)
+					chk_mlt++;
 			}
 		}
 		pb(a, b);

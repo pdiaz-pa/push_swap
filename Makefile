@@ -24,6 +24,7 @@ SRC = 	ft_utils.c 	\
 		ft_array_utils.c \
 		ft_count_and_finder.c \
 		ft_lot_utils.c \
+		ft_sort_three.c \
 
 SRCS = $(addprefix $(DIR_S),$(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:44:30 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/29 11:34:48 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:02:04 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ void	ft_free(char **s, int idx)
 	while (idx--)
 		free(s[idx]);
 	free(s);
+}
+
+void	free_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
 void	ft_free_stacks(t_stack *a, t_stack *b)

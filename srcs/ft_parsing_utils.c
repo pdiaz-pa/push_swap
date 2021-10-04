@@ -6,7 +6,7 @@
 /*   By: pdiaz-pa <pdiaz-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:27:38 by pdiaz-pa          #+#    #+#             */
-/*   Updated: 2021/09/30 10:47:09 by pdiaz-pa         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:07:55 by pdiaz-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_is_dup(long long *nums, int size)
 	i = 0;
 	j = 0;
 	checker = nums;
-
 	while (i != size)
 	{
 		while (j != size)
@@ -36,7 +35,7 @@ int	ft_is_dup(long long *nums, int size)
 	return (0);
 }
 
-int	ft_is_sort(long long *array, int size)
+int	ft_is_sort(long long *nums, int size)
 {
 	int	i;
 	int	j;
@@ -49,7 +48,7 @@ int	ft_is_sort(long long *array, int size)
 		i++;
 	while (k < i)
 	{
-		if (array[k] >= array[k + 1])
+		if (nums[k] >= nums[k + 1])
 			j++;
 		k++;
 	}
@@ -74,7 +73,7 @@ int	ft_max_min_int(long long *nums, int size)
 	int	i;
 
 	i = 0;
-	while (nums[i] < size)
+	while (i < size)
 	{
 		if (nums[i] > 2147483647 || nums[i] < -2147483648)
 			return (-1);
